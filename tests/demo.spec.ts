@@ -1,5 +1,5 @@
 import ApplicationURL from "../helpers/applicationURL";
-import UserCredentials from "../helpers/UserCredentials";
+import UserCredentials from "../helpers/userCredentials";
 import LoginPage from "../pages/LoginPage"; 
 import { test } from "@playwright/test";
 

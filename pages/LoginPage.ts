@@ -1,6 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test";
 import ApplicationURL from "../helpers/applicationURL";
-import UserCredentials from "../helpers/UserCredentials";
+import UserCredentials from "../helpers/userCredentials";
 
 export default class LoginPage {
     
