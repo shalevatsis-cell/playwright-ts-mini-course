@@ -1,6 +1,9 @@
+import LoginPage from '../pages/LoginPage';
 import { test, expect } from '@playwright/test';
 
 test('sanity test', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    
   await page.goto('https://www.saucedemo.com/');
   await page.locator('[data-test="username"]').click();
   await page.locator('[data-test="username"]').fill('standard_user');
@@ -24,4 +27,5 @@ test('sanity test', async ({ page }) => {
   await page.locator('[data-test="back-to-products"]').click();
   await page.locator('div').filter({ hasText: 'Swag Labs' }).nth(5).click();
   await page.goto('https://saucelabs.com/');
+
 });
