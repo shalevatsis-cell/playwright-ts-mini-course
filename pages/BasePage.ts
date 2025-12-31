@@ -25,4 +25,14 @@ export default abstract class BasePage {
     public async validatePageTitle(expectedTitle: string) {
         await expect(this.page).toHaveTitle(expectedTitle);
     }
+
+    public async validateTitle(title: string) {
+        await this.validateElementText(this.page.locator('.title'), title);
+    }
+
+    protected async clickElement(element: Locator) {
+        await test.step(`Clicking on '${element}' element`, async () => {
+            await element.click();
+        });
+    }
 }
