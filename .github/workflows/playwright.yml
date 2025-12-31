@@ -38,10 +38,10 @@ jobs:
       run: npx playwright test
       env:
         standardUser: ${{ vars.STANDARDUSER }}
-        lockedOutUser: ${{ secrets.LOCKEDOUTUSER }}
-        problemUser: ${{ secrets.PROBLEMUSER }}
-        performanceGlitchUser: ${{ secrets.PERFORMANCEGLITCHUSER }}
-        correctPassword: ${{ secrets.CORRECTPASSWORD }}
+        lockedOutUser: ${{ vars.LOCKEDOUTUSER }}
+        problemUser: ${{ vars.PROBLEMUSER }}
+        performanceGlitchUser: ${{ vars.PERFORMANCEGLITCHUSER }}
+        correctPassword: ${{ vars.CORRECTPASSWORD }}
     # Step 6: Upload test artifacts for review (runs even if tests fail)
     # This uploads the Playwright HTML report for viewing test results and traces
     - uses: actions/upload-artifact@v4
