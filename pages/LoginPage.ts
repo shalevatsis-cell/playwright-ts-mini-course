@@ -1,17 +1,22 @@
-import { Locator, Page, expect } from "@playwright/test";
+import { Locator, Page, test } from "@playwright/test";
 import ApplicationURL from "../helpers/applicationURL";
 import UserCredentials from "../helpers/userCredentials";
+import { ErrorMessages } from "../helpers/errorMessages";
+import BasePage from "./BasePage";
 
-export default class LoginPage {
-    
-    userNameField: Locator;
-    passwordField: Locator;
-    loginButton: Locator;
+export default class LoginPage extends BasePage {
+
+    private userNameField: Locator;
+    private passwordField: Locator;
+    private loginButton: Locator;
+    private errorMessage: Locator;
 
     constructor(protected page: Page) {
+        super(page);
         this.userNameField = this.page.locator('[data-test="username"]');
         this.passwordField = this.page.locator('[data-test="password"]');
         this.loginButton = this.page.locator('[data-test="login-button"]');
+        this.errorMessage = this.page.locator('[data-test="error"]');
     }
 
     public async loginToApplication(username: string = UserCredentials.standardUser, password: string = UserCredentials.correctPassword, url: string = ApplicationURL.baseURL) {
@@ -20,12 +25,11 @@ export default class LoginPage {
         await this.userNameField.fill(username);
         await this.passwordField.fill(password);
         await this.loginButton.click();
-        if (username !== UserCredentials.lockedOutUser) {
-            await this.page.waitForURL('**/inventory.html');
-        }
     }
 
-    public async validatePageURL(expectedURL: string) {
-        await expect(this.page).toHaveURL(expectedURL, {timeout: 5000});
+    public async validateErrorMessage(errorMessage: ErrorMessages) {
+        await test.step(`Validating that error message is: ${errorMessage.valueOf()}`, async () => {
+            await this.validateElementText(this.errorMessage, errorMessage.valueOf());
+        });
     }
 }
