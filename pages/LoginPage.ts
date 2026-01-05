@@ -1,6 +1,6 @@
 import { Locator, Page, test } from "@playwright/test";
-import ApplicationURL from "../helpers/applicationURL";
 import { ErrorMessages } from "../helpers/errorMessages";
+import ApplicationURL from "../helpers/applicationURL";
 import BasePage from "./BasePage";
 
 /**

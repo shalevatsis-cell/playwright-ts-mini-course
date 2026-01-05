@@ -1,7 +1,7 @@
 import { Locator, Page, expect, test } from '@playwright/test';
 import BasePage from './BasePage';
 
-export default class CheckOutStepTwoPage extends BasePage {
+export default class CheckoutStepTwoPage extends BasePage {
     // Page elements and methods for checkout step two
     private finishButton: Locator;
     private itemTotal: Locator;
