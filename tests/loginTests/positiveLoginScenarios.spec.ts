@@ -98,7 +98,7 @@ test.describe("Positive login Scenarios", () => { // Note: Description doesn't m
         
         // SUCCESS VALIDATION: Login should succeed despite performance issues
         // Performance problems typically affect page load times, not login success
-        await loginPage.validatePageURL(ApplicationURL.inventoryURL);
+        await inventoryPage.validatePageURL(ApplicationURL.inventoryURL);
     });
 });
 
