@@ -81,6 +81,13 @@ export default abstract class BasePage {
             await element.click();
         });
     }
+
+    protected async fillInput(element: Locator, value: string) {
+        await test.step(`Filling input '${element}' with value: ${value}`, async () => {
+            await element.fill(value);
+        });
+    }
+
 }
 
 /**

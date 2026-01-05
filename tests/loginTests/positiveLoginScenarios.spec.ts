@@ -92,12 +92,14 @@ test.describe("Positive login Scenarios", () => { // Note: Description doesn't m
      * - Performance bottlenecks
      * - Used for performance testing scenarios
      */
-    test("Performance glitch user", async () => {
+    test("Performance glitch user", async ({ page }) => {
         // LOGIN WITH PERFORMANCE USER: Tests system under performance constraints
         await loginPage.loginToApplication(process.env.performanceGlitchUser);
         
         // SUCCESS VALIDATION: Login should succeed despite performance issues
         // Performance problems typically affect page load times, not login success
+        // Add extra wait time for performance glitch user due to slow loading
+        await page.waitForTimeout(3000);
         await inventoryPage.validatePageURL(ApplicationURL.inventoryURL);
     });
 });

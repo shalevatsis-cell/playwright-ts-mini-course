@@ -14,6 +14,7 @@ export default class CartPage extends BasePage {
     
     // PRIVATE FIELDS - Encapsulation of page elements
     private cartItems: Locator;      // All cart item elements
+    private cartItemsName: Locator;  // All cart item names
     private checkoutButton: Locator; // Checkout button element
 
     /**
@@ -29,6 +30,7 @@ export default class CartPage extends BasePage {
         
         // ENCAPSULATION: Initialize private locators for cart-specific elements
         this.cartItems = this.page.locator('.cart_item');
+        this.cartItemsName = this.page.locator('.cart_item .inventory_item_name');
         this.checkoutButton = this.page.locator('[data-test="checkout"]');
     }
 
@@ -53,6 +55,16 @@ export default class CartPage extends BasePage {
             
             // Assert that actual count matches expected count
             expect(count).toBe(expectedCount);
+        });
+    }
+
+    public async validateCartItemNames(expectedNames: string[]) {
+        await test.step(`Validating cart item names`, async () => {
+            // Get actual cart item names
+            const actualNames = await this.cartItemsName.allTextContents();
+            
+            // Assert that actual names match expected names
+            expect(actualNames).toEqual(expectedNames);
         });
     }
 

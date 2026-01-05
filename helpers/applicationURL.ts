@@ -31,6 +31,9 @@ export default class ApplicationURL {
     // COMPOSED URLs - Built from base URL for consistency
     public static readonly inventoryURL = ApplicationURL.baseURL + 'inventory.html';
     public static readonly cartURL = ApplicationURL.baseURL + 'cart.html';
+    public static readonly checkoutStepOneURL = ApplicationURL.baseURL + 'checkout-step-one.html';
+    public static readonly checkoutStepTwoURL = ApplicationURL.baseURL + 'checkout-step-two.html';
+    public static readonly checkoutCompleteURL = ApplicationURL.baseURL + 'checkout-complete.html';
 }
 
 /**
