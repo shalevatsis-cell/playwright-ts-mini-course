@@ -1,6 +1,8 @@
 import {test} from "@playwright/test";
 import LoginPage from "../../pages/LoginPage";
 import ApplicationURL from "../../helpers/applicationURL";
+import InventoryPage from "../../pages/InventoryPage";
+import PageTitles from "../../helpers/pageTitles";
 
 /**
  * POSITIVE LOGIN SCENARIOS - Demonstrates SUCCESSFUL TEST CASES and DATA-DRIVEN TESTING
@@ -28,7 +30,7 @@ test.describe("Positive login Scenarios", () => { // Note: Description doesn't m
   
     // VARIABLE DECLARATION - LoginPage instance for all tests
     let loginPage: LoginPage;
-    
+    let inventoryPage: InventoryPage;
     /**
      * SETUP METHOD - Test initialization
      * 
@@ -40,6 +42,11 @@ test.describe("Positive login Scenarios", () => { // Note: Description doesn't m
     test.beforeEach(async ({ page }) => {
        // OBJECT CREATION: New LoginPage instance for each test
        loginPage = new LoginPage(page);
+       inventoryPage = new InventoryPage(page);
+    });
+
+    test.afterEach(async ({ page }) => {
+        await inventoryPage.validateTitle(PageTitles.inventoryPage);
     });
 
     /**
@@ -57,7 +64,7 @@ test.describe("Positive login Scenarios", () => { // Note: Description doesn't m
         
         // SUCCESS VALIDATION: Verify user is redirected to inventory page
         // This confirms login was successful
-        await loginPage.validatePageURL(ApplicationURL.inventoryURL);
+        await inventoryPage.validatePageURL(ApplicationURL.inventoryURL);
     });
 
     /**

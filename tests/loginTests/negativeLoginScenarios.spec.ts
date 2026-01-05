@@ -2,6 +2,7 @@ import {test} from "@playwright/test";
 import LoginPage from "../../pages/LoginPage";
 import { ErrorMessages } from "../../helpers/errorMessages";
 import ApplicationURL from "../../helpers/applicationURL";
+import InventoryPage from "../../pages/InventoryPage";
 
 /**
  * NEGATIVE LOGIN SCENARIOS - Demonstrates TEST ORGANIZATION and ERROR HANDLING
@@ -32,7 +33,8 @@ test.describe("Negative login Scenarios", () => {
   
     // VARIABLE DECLARATION - Will hold LoginPage instance
     let loginPage: LoginPage;
-    
+    let inventoryPage: InventoryPage;
+
     /**
      * SETUP METHOD - Runs before each test
      * 
@@ -44,6 +46,7 @@ test.describe("Negative login Scenarios", () => {
     test.beforeEach(async ({ page }) => {
        // OBJECT CREATION: Instantiate LoginPage with Playwright page
        loginPage = new LoginPage(page);
+       inventoryPage = new InventoryPage(page);
     });
 
     /**
